@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Search App</title>	
+	<link rel="stylesheet" href="public/css/bootstrap.css"></link>
+	<link rel="stylesheet" href="public/css/index.css"></link>
+	<script type="text/javascript" src="public/libs/angular.js"></script>
+	<script type="text/javascript" src="public/libs/ui-bootstrap-tpls.js"></script>
+	<script type="text/javascript" src="public/libs/angular-animate.js"></script>
+	<script type="text/javascript" src="public/js/app.js"></script>
+</head>
+<body>
+	<div ng-app="searchApp" ng-controller="SearchCtrl" class="container-fluid">	
+		<div class="fixed"><b>Total Results: </b>{{rawdata.meta.offset + 10}}</div>	
+		<div class="search-wraaper">		
+			<div class="container" ng-init="search()">
+				<div on-scroll="showMore()">
+					<div ng-repeat="item in rawdata.docs" class="search-item">				
+						<div>
+							<h2 class="title">{{item.headline.main}}</h2>
+						</div>
+						<div>
+							<label>Snippet</label>
+							{{item.snippet}}
+						</div>
+						<div>
+							<label>Description</label>
+							{{item.lead_paragraph}}
+						</div>
+						<div>
+							<label>Material</label>
+							{{item.type_of_material}}
+						</div>
+					</div>
+					<div ng-if="rawdata.wait" class="loadbar alert alert-info text-center">Loading....</div>
+				</div>	
+			</div>
+		</div>				
+	</div>
+</body>
+</html>
